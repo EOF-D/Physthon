@@ -1,0 +1,38 @@
+start: [stmt+]
+stmt: expr -> expr_stmt
+
+expr: atom_expr
+?atom_expr: atom
+
+?atom: literals
+
+literals: "none"  -> const_none
+        | "true"  -> const_true
+        | "false" -> const_false
+        | number  -> const_number
+        | string  -> const_string
+        | list    -> list_literal
+        | tuple   -> tuple_literal
+        | set     -> set_literal
+        | dict    -> dict_literal
+
+list:  "[" _cs_list{expr} "]"
+tuple: "(" _cs_list{expr} ")"
+set:   "{" _cs_list{expr} "}"
+dict:  "{" _sep{key_value, ","} "}"
+
+key_value: expr ":" expr
+_cs_list{item}: item [("," item)* | (", " item)*] ","?
+_sep{item, sep}: item (sep item)*
+
+%import python.number
+%import python.name
+%import python.string
+
+%import common.CPP_COMMENT
+%import common.NEWLINE
+%import common.WS
+
+%ignore CPP_COMMENT
+%ignore NEWLINE
+%ignore WS
