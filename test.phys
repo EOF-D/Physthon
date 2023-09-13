@@ -1,0 +1,4 @@
+#encoding: physthon
+
+import codecs
+print(codecs.lookup("physthon"))

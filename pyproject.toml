@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "physthon"
+version = "0.1.0"
+description = "A PVM based language"
+authors = ["EOF-D <END-OFD@pm.me>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+rich = "^13.5.2"
+lark = "^1.1.7"
+astpretty = "^3.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pyright = "^1.1.326"
+black = "^23.9.1"
+isort = "^5.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
