@@ -5,6 +5,7 @@ description = "A PVM based language"
 authors = ["EOF-D <END-OFD@pm.me>"]
 license = "MIT"
 readme = "README.md"
+packages = [{include = "physthon"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
