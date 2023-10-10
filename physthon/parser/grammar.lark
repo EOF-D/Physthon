@@ -19,7 +19,7 @@ literals: "none"  -> const_none
 list:  "[" _cs_list{expr} "]"
 tuple: "(" _cs_list{expr} ")"
 set:   "{" _cs_list{expr} "}"
-dict:  "{" _sep{key_value, _comma} "}"
+dict:  "@{" _sep{key_value, _comma} "}"
 
 
 key_value: expr ":" expr
