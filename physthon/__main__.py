@@ -1,7 +1,12 @@
 from __future__ import annotations
 
+import os
+
 from argparse import ArgumentParser
 from sysconfig import get_paths
+
+import rich
+from lark import Lark
 
 from physthon import __author__, __version__
 
@@ -43,6 +48,16 @@ def main() -> None:
 
         print(f"Wrote `physthon_autoload.pth` to {path}")
 
+    elif args.run:
+        path = os.path.dirname(__file__)
+
+        with open(f"{path}/parser/grammar.lark", "r") as fp:
+            parser = Lark(
+                fp.read(), start="module", parser="lalr", propagate_positions=True
+            )
+        
+        with open(args.run, "r") as fp:
+            rich.inspect(parser.parse(fp.read()))
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,4 @@
-start: [stmt+]
+module: [stmt+]
 stmt: expr -> expr_stmt
 
 expr: atom_expr
@@ -19,9 +19,11 @@ literals: "none"  -> const_none
 list:  "[" _cs_list{expr} "]"
 tuple: "(" _cs_list{expr} ")"
 set:   "{" _cs_list{expr} "}"
-dict:  "{" _sep{key_value, ","} "}"
+dict:  "{" _sep{key_value, _comma} "}"
+
 
 key_value: expr ":" expr
+_comma: ", " | ","
 _cs_list{item}: item [("," item)* | (", " item)*] ","?
 _sep{item, sep}: item (sep item)*
 
