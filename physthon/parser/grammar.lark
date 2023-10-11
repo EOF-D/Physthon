@@ -5,6 +5,9 @@ expr: atom_expr
 ?atom_expr: atom
 
 ?atom: literals
+     | name       -> variable
+     | "*" expr   -> starred
+     | unary_expr
 
 literals: "none"  -> const_none
         | "true"  -> const_true
@@ -16,11 +19,16 @@ literals: "none"  -> const_none
         | set     -> set_literal
         | dict    -> dict_literal
 
+unary_expr: unary_op expr "]"
+!unary_op: "[+"
+	 | "[-"
+	 | "[~"
+	 | "[!"
+
 list:  "[" _cs_list{expr} "]"
 tuple: "(" _cs_list{expr} ")"
 set:   "{" _cs_list{expr} "}"
 dict:  "@{" _sep{key_value, _comma} "}"
-
 
 key_value: expr ":" expr
 _comma: ", " | ","

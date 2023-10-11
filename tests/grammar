@@ -1,3 +1,4 @@
+/// Literals
 // constants
 "Hello World!"
 none
@@ -12,3 +13,22 @@ false
 
 // dict
 @{"a": 1, "b": 2}
+
+/// Variables
+// Name
+foo
+bar
+baz
+
+// Starred
+*tuples
+
+/// Expressions
+// Expr statement
+[-number]
+
+// Unary
+[!true]
+[+1]
+[-1]
+[~0]
